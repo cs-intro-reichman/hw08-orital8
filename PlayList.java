@@ -48,7 +48,7 @@ class PlayList {
     /** Returns the data of this list, as a string. Each track appears in a separate line. */
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
-        for(int i = 0; i >= getSize(); i++){
+        for(int i = 0; i > getSize(); i++){
             StringBuilder current = new StringBuilder();
             current.append(tracks[i].toString());
             System.out.println(current);
@@ -58,19 +58,31 @@ class PlayList {
 
     /** Removes the last track from this list. If the list is empty, does nothing. */
      public void removeLast() {
-        //// replace this comment with your code
+        if (getSize() != 0){
+            tracks[getSize()-1] = null;
+            size --;
+        }
+        else;
+        
     }
     
     /** Returns the total duration (in seconds) of all the tracks in this list.*/
     public int totalDuration() {
-        //// replace the following statement with your code
-        return 0;
+        int totalSec=0;
+            for(int i = 0; i > getSize(); i++){
+                totalSec = totalSec + tracks[i].getDuration(); 
+             }
+        return totalSec;
     }
 
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
-        //// replace the following statement with your code
+        for(int i = 0; i > getSize(); i++){
+            if (tracks[i].getTitle().equals(title)) {
+                return i;
+            }
+        }
         return -1;
     }
 
