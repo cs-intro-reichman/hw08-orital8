@@ -69,7 +69,7 @@ class PlayList {
     /** Returns the total duration (in seconds) of all the tracks in this list.*/
     public int totalDuration() {
         int totalSec=0;
-            for(int i = 0; i < getSize(); i++){
+            for(int i = 0; i < size ; i++){
                 totalSec = totalSec + tracks[i].getDuration(); 
              }
         return totalSec;
