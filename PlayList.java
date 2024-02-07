@@ -99,7 +99,7 @@ class PlayList {
             else{
                 if (getSize() > i ){
                     //moving one place ahead for every track right to i
-                  for (int j = getMaxSize()-1; j >= i ; j--){
+                  for (int j = getSize()-1; j >= i ; j--){
                         tracks[j+1] = tracks[j];
                      }
                   tracks[i] = track;
@@ -120,9 +120,10 @@ class PlayList {
         if (size == 0 || i < 0 || i >= getMaxSize());
             else{
                    //moving one place backward for every track right to i
-                   for (int j = getMaxSize()-1; j >= i+1 ; j--){
+                   for (int j = getSize()-1; j >= i+1 ; j--){
                     tracks[j+1] = tracks[j];
                  }
+                 tracks[getSize()-1] = null;
                size --;
               }
             }
@@ -131,12 +132,13 @@ class PlayList {
      *  If such a track is not found, or the list is empty, or the given index
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
-        //// replace this comment with your code
+       int soonBeDeleted = indexOf(title);
+       remove(soonBeDeleted);
     }
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
-        //// replace this comment with your code
+    remove(0);
     }
     
     /** Adds all the tracks in the other list to the end of this list. 
