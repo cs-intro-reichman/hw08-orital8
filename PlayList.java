@@ -4,7 +4,7 @@ class PlayList {
     private Track[] tracks;  // Array of tracks (Track objects)   
     private int maxSize;     // Maximum number of tracks in the array
     private int size;        // Actual number of tracks in the array
-
+    
     /** Constructs an empty play list with a maximum number of tracks. */ 
     public PlayList(int maxSize) {
         this.maxSize = maxSize;
@@ -185,8 +185,19 @@ class PlayList {
      *  rather than returning a new, sorted playlist, the method sorts
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
-        // Uses the selection sort algorithm,  
-        // calling the minIndex method in each iteration.
-        //// replace this statement with your code
+        Track min = tracks[0];
+        int minIndex  = 0;
+        for(int i = 0; i < getSize(); i++){
+             min = tracks[i];
+             minIndex = i; 
+            for(int j = i+1; j < getSize(); j++){
+                if (tracks[j].getDuration() < min.getDuration() ){
+                min= tracks[j];
+                minIndex = j;
+                }
+                tracks[minIndex] = tracks[i];
+                tracks[i] = min;
+            }
+        }
     }
 }
