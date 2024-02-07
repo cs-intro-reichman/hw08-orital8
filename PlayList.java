@@ -78,6 +78,7 @@ class PlayList {
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
+
         for(int i = 0; i > getSize(); i++){
             if (tracks[i].getTitle().equals(title)) {
                 return i;
@@ -93,16 +94,38 @@ class PlayList {
      *  is full, does nothing and returns false. Otherwise, inserts the track and
      *  returns true. */
     public boolean add(int i, Track track) {
-        //// replace the following statement with your code
+        if (i < 0 || i >= getMaxSize() || getMaxSize() == getSize())
         return false;
+            else{
+                if (getSize() > i ){
+                    //moving one place ahead for every track right to i
+                  for (int j = getMaxSize()-1; j >= i ; j--){
+                        tracks[j+1] = tracks[j];
+                     }
+                  tracks[i] = track;
+                    size ++;   
+                  }
+               else{
+                tracks[i] = track;
+                size ++; 
+               }   
+            return true;
+        }
     }
      
     /** Removes the track in the given index from this list.
      *  If the list is empty, or the given index is negative or too big for this list, 
      *  does nothing and returns -1. */
     public void remove(int i) {
-        //// replace this comment with your code
-    }
+        if (size == 0 || i < 0 || i >= getMaxSize());
+            else{
+                   //moving one place backward for every track right to i
+                   for (int j = getMaxSize()-1; j >= i+1 ; j--){
+                    tracks[j+1] = tracks[j];
+                 }
+               size --;
+              }
+            }
 
     /** Removes the first track that has the given title from this list.
      *  If such a track is not found, or the list is empty, or the given index
