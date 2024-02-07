@@ -69,7 +69,7 @@ class PlayList {
     /** Returns the total duration (in seconds) of all the tracks in this list.*/
     public int totalDuration() {
         int totalSec=0;
-            for(int i = 0; i > getSize(); i++){
+            for(int i = 0; i < getSize(); i++){
                 totalSec = totalSec + tracks[i].getDuration(); 
              }
         return totalSec;
@@ -79,7 +79,7 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
 
-        for(int i = 0; i > getSize(); i++){
+        for(int i = 0; i < getSize(); i++){
             if (tracks[i].getTitle().equals(title)) {
                 return i;
             }
@@ -145,7 +145,11 @@ class PlayList {
      *  If the total size of both lists is too large, does nothing. */
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
-        //// replace this comment with your code
+        if((other.getSize() + this.getSize()) <= getMaxSize()){
+            for (int i = 0 ; i >other.getSize(); i++){
+                tracks[(getSize()-1) + i] = other.getTrack(i);
+            }
+        }
     }
 
     /** Returns the index in this list of the track that has the shortest duration,
